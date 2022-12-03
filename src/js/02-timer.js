@@ -51,6 +51,11 @@ const timer = {
       const deltaTime = qwe - asd;
       const time = convertMs(deltaTime);
       updateClock(time);
+      const { days, hours, minutes, seconds } = convertMs(deltaTime);
+      refs.days.textContent = days;
+      refs.hours.textContent = hours;
+      refs.minutes.textContent = minutes;
+      refs.seconds.textContent = seconds;
       if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
         clearInterval(interval);
       }
