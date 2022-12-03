@@ -34,6 +34,10 @@ const options = {
 
 flatpickr('#datetime-picker', options);
 
+refs.buttonStart.addEventListener('click', () => {
+  timer.start();
+});
+
 const timer = {
   isActive: false,
   start() {
@@ -41,19 +45,18 @@ const timer = {
       return;
     }
     const qwe = currentTime;
-    setInterval(() => {
+    const interval = setInterval(() => {
       const asd = Date.now();
       this.isActive = true;
       const deltaTime = qwe - asd;
       const time = convertMs(deltaTime);
       updateClock(time);
+      if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
+        clearInterval(interval);
+      }
     }, 1000);
   },
 };
-
-refs.buttonStart.addEventListener('click', () => {
-  timer.start();
-});
 
 function convertMs(ms) {
   const second = 1000;
